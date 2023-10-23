@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './App.module.scss';
+import './app.module.scss';
+import TimeCounter from './TimeCounter';
 function App() {
   const [time, setTime] = useState(0);
   const [timerOn, setTimerOn] = useState(false);
@@ -18,20 +19,14 @@ function App() {
   }, [timerOn]);
 
   return (
-    <div className="Timers">
+    <div className="timers">
       <h2>STOPER</h2>
-      <div>
-        <span>{('0' + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
-        <span>{('0' + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
-        <span>{('0' + ((time / 10) % 100)).slice(-2)}:</span>
-        <span>{('0' + ((time / 1) % 1000))}</span>
-      </div>
-
-      <div>
-        <button onClick={() => setTimerOn(true)}>Start</button>
-        <button onClick={() => setTimerOn(false)}>Stop</button>
-        <button onClick={() => setTime(0)}>Reset</button>
-      </div>
+      <TimeCounter
+        time={time}
+        setTime={setTime}
+        timerOn={timerOn}
+        setTimerOn={setTimerOn}
+      />
     </div>
   );
 }

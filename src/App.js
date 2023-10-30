@@ -1,9 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import './app.module.scss';
-import TimeCounter from './TimeCounter';
+import FormattedTime from './FormattedTime';
+
 function App() {
   const [time, setTime] = useState(0);
   const [timerOn, setTimerOn] = useState(false);
+
+  const handleStart = () => {
+    setTimerOn(true);
+  };
+
+  const handleStop = () => {
+    setTimerOn(false);
+  };
+
+  const handleReset = () => {
+    setTime(0);
+  };
+
   useEffect(() => {
     let interval = null;
 
@@ -21,12 +34,12 @@ function App() {
   return (
     <div className="timers">
       <h2>STOPER</h2>
-      <TimeCounter
-        time={time}
-        setTime={setTime}
-        timerOn={timerOn}
-        setTimerOn={setTimerOn}
-      />
+      <FormattedTime time={time} />
+      <div>
+        <button onClick={handleStart}>Start</button>
+        <button onClick={handleStop}>Stop</button>
+        <button onClick={handleReset}>Reset</button>
+      </div>
     </div>
   );
 }
